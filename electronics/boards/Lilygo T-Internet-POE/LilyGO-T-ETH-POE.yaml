@@ -1,0 +1,64 @@
+#References
+#https://randomnerdtutorials.com/esp32-pinout-reference-gpios/
+
+#+-----------------------------+
+#|         GPIO HEADER         |
+#|  36 [I]   39 [I]            |
+#|  34 [I]   35 [I]            |
+#|  16 [OK]  32 SCL            |  
+#|  33 SDA   12 [no boot if PU]|
+#|  04 [OK]  15 MOSI           |
+#|  02 MISO  14 SCLK           |
+#|   3v3      GND              |
+#|   3v3      GND              |
+#+-----------------------------+
+
+esphome:
+  name: ${DEVICENAME}
+
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+#Home assistant Bluetooth proxy
+esp32_ble_tracker:
+  scan_parameters:
+    interval: 1100ms
+    window: 1100ms
+    active: true
+    
+bluetooth_proxy:
+  active: true
+  
+# Configuration for LILYGO TTGO T-Internet-POE ESP32-WROOM LAN8270A Chip
+ethernet:
+  id: eth_${DEVICE_NAME}
+  type: LAN8720
+  mdc_pin: GPIO23
+  mdio_pin: GPIO18
+  clk_mode: GPIO17_OUT
+  phy_addr: 0
+  
+
+#SPI config per sd card slot
+spi:
+  mosi_pin: GPIO15
+  clk_pin: GPIO14
+  #SD_CS: GPIO13
+  miso_pin: GPIO02
+
+
+#I2C chosen for free gpio on header  
+i2c:
+  sda: 33
+  scl: 32
+  scan: true
+  
+
+text_sensor:    
+  - platform: ethernet_info
+    ip_address:
+      name: "${DEVICENAME} IP"
+      icon: "mdi:ip"
