@@ -16,4 +16,4 @@
 |  AG0 |  LR521  |  G0 |      |     |       |    379    |  SR521W |  LR521 |
 
 
-Created with [button cells.csv](button cells.csv) and [Tables Generator](https://www.tablesgenerator.com/markdown_tables)
+Created with [button cells.csv](button%20cells.csv) and [Tables Generator](https://www.tablesgenerator.com/markdown_tables)
